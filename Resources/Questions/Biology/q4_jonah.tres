@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://cej848no6x81s"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_xavj4"]
+
+[resource]
+script = ExtResource("1_xavj4")
+question = "What are the three stages of interphase in order?"
+options = Array[String](["G1, S, G2", "S1, G, S2", "A, B, C", "A1, B, A2"])
+metadata/_custom_type_script = "uid://dyoponebgj16r"

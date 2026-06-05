@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://7v2yf2ddj8h"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_4o7vn"]
+
+[resource]
+script = ExtResource("1_4o7vn")
+question = "In what phase do all the chromosomes line up?"
+options = Array[String](["Metaphase", "Prophase", "Anaphase", "Telophase"])
+metadata/_custom_type_script = "uid://dyoponebgj16r"

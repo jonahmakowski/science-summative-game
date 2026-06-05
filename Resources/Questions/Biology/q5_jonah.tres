@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bp7wqqliqqqyi"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_dni6s"]
+
+[resource]
+script = ExtResource("1_dni6s")
+question = "What are the four stages of mitosis?"
+options = Array[String](["Prophase, metaphase, anaphase, telophase", "Interphase, metaphase, telophase, anaphase", "G1, S, G2, mitosis"])
+metadata/_custom_type_script = "uid://dyoponebgj16r"

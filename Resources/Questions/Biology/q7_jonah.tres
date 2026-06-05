@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://31ah1enn6obi"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_6204o"]
+
+[resource]
+script = ExtResource("1_6204o")
+question = "In what phase does the cell membrane break down?"
+options = Array[String](["Prophase", "Metaphase", "Anaphase", "Telophase"])
+metadata/_custom_type_script = "uid://dyoponebgj16r"

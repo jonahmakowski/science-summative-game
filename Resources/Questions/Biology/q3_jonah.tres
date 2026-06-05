@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bfse8rgvuuqr0"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_8nxou"]
+
+[resource]
+script = ExtResource("1_8nxou")
+question = "What does the vacuole do?"
+options = Array[String](["Storage of substances", "Synthesis of ribosome components", "Modification, packing, and transport of proteins", "Synthesis of fats"])
+metadata/_custom_type_script = "uid://dyoponebgj16r"

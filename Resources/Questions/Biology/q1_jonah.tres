@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bqbtcmhuhbbte"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="2_ntso6"]
+
+[resource]
+script = ExtResource("2_ntso6")
+question = "What do ribosomes do?"
+options = Array[String](["Synthesis of protein", "Digestion of food particles, breakdown of dead cells", "Synthesis of fats", "Transport of materials within and batween cells"])
+metadata/_custom_type_script = "uid://dyoponebgj16r"

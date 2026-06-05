@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://kp402uxx5nxk"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_022ct"]
+
+[resource]
+script = ExtResource("1_022ct")
+question = "Describe the golgi apparatus."
+options = Array[String](["Stacks of flattened membranous tubes", "Fluid structure between the cell membrane and the nucleus", "Membranous network around nucleus, covered in ribosomes", "Rigid cellulose layer around the cell"])
+metadata/_custom_type_script = "uid://dyoponebgj16r"
