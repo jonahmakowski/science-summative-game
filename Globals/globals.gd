@@ -10,13 +10,7 @@ func _ready() -> void:
 
 
 func load_questions() -> void:
-	questions = load_resources_recursive(QUESTION_PATH)
-
-
-func load_resources_recursive(path: String) -> Array:
-	var resources := []
-	_load_recursive(path, resources)
-	return resources
+	_load_recursive(QUESTION_PATH, questions)
 
 
 func _load_recursive(path: String, resources: Array) -> void:
