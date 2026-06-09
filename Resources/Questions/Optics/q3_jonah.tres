@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://c6puajdmsgcwm"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_31thi"]
+
+[resource]
+script = ExtResource("1_31thi")
+question = "Which of the following is commonly called farsightedness?"
+options = Array[String](["Hyperopia", "Myopia", "Presyopia", "Astigmatism"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

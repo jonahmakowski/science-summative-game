@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://b25b6j22r5v03"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_rqbnr"]
+
+[resource]
+script = ExtResource("1_rqbnr")
+question = "Do the poles warm faster than the rest of the planet?"
+options = Array[String](["Yes, the poles are warming faster.", "No, the poles aren't warming faster."])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

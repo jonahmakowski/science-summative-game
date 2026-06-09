@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://cvsccjdvgvowj"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_4xl8g"]
+
+[resource]
+script = ExtResource("1_4xl8g")
+question = "Roughly how much incoming energy is reflected from the Earth?"
+options = Array[String](["30%", "20%", "35%", "15%"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://depuqdh01cxvl"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_jl5y1"]
+
+[resource]
+script = ExtResource("1_jl5y1")
+question = "Which of the following describes mitigation?"
+options = Array[String](["Plans/strategies to reduce GHGs", "Strategies to help us deal with current changes"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

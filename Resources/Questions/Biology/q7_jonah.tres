@@ -6,4 +6,5 @@
 script = ExtResource("1_6204o")
 question = "In what phase does the cell membrane break down?"
 options = Array[String](["Prophase", "Metaphase", "Anaphase", "Telophase"])
+writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

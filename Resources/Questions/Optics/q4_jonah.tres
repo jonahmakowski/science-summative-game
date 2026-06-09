@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://c15qrtlkyxb5x"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_hehun"]
+
+[resource]
+script = ExtResource("1_hehun")
+question = "What does the optic nerve do?"
+options = Array[String](["Transmits electrical signal from retina to brain", "Opens and closes to adjust the amount of light coming through", "Change the shape of the lens for focusing", "Convert light into electrical signal"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

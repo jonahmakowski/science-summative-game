@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_skhym")
 question = "What ions must be in pairs?"
-options = Array[String](["O2, H2, Br2, I2, F2, N2, Cl2", "C2, N2, O2, B2, F2, Ne2, Na2", "F2, Cl2, Br2, I2, O2, S2, Se2", "H2, O2, N2, Ne2, F2, He2, Cl2"])
+options = Array[String](["O₂, H₂, Br₂, I₂, F₂, N₂, Cl₂", "C₂, N₂, O₂, B₂, F₂, Ne₂, Na₂", "F₂, Cl₂, Br₂, I₂, O₂, S₂, Se₂", "H₂, O₂, N₂, Ne₂, F₂, He₂, Cl₂"])
+writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

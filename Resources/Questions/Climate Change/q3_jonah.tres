@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://dht4lvq33olbt"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_gl1e3"]
+
+[resource]
+script = ExtResource("1_gl1e3")
+question = "What is the heat capacity of water relative to air"
+options = Array[String](["4x", "3x", "5x", "2x"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

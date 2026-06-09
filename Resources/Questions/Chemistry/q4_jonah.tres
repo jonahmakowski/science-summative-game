@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bgprwvpxoea5g"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_r2wmb"]
+
+[resource]
+script = ExtResource("1_r2wmb")
+question = "Which polyatomic ion has a charge of 2-?"
+options = Array[String](["Carbonate, Sulphate", "Chlorate, Nitrate, Carbonate", "Chlorate, Nitrate, Hydroxide", "Phosphate"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

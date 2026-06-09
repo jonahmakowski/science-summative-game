@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://c0f1e1rpyhtpd"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_qrbee"]
+
+[resource]
+script = ExtResource("1_qrbee")
+question = "Which of these describe a positive feedback loop?"
+options = Array[String](["The initial change gets amplified as time goes on", "The initial change causes a reduction in that change, resulting in a stable or oscillating state"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

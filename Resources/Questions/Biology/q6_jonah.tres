@@ -6,4 +6,5 @@
 script = ExtResource("1_4o7vn")
 question = "In what phase do all the chromosomes line up?"
 options = Array[String](["Metaphase", "Prophase", "Anaphase", "Telophase"])
+writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

@@ -6,4 +6,5 @@
 script = ExtResource("1_8nxou")
 question = "What does the vacuole do?"
 options = Array[String](["Storage of substances", "Synthesis of ribosome components", "Modification, packing, and transport of proteins", "Synthesis of fats"])
+writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

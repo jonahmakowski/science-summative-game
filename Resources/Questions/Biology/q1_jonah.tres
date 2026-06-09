@@ -6,4 +6,5 @@
 script = ExtResource("2_ntso6")
 question = "What do ribosomes do?"
 options = Array[String](["Synthesis of protein", "Digestion of food particles, breakdown of dead cells", "Synthesis of fats", "Transport of materials within and batween cells"])
+writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

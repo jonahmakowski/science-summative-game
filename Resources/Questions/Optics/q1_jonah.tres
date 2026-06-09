@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://b5dhxfk1ov17d"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_28vwk"]
+
+[resource]
+script = ExtResource("1_28vwk")
+question = "What part of a camera is similar to the retina?"
+options = Array[String](["Film/Digital Sensor", "Focusing Mechanism", "Camera Lenses", "Flash"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

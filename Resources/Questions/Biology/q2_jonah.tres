@@ -6,4 +6,5 @@
 script = ExtResource("1_022ct")
 question = "Describe the golgi apparatus."
 options = Array[String](["Stacks of flattened membranous tubes", "Fluid structure between the cell membrane and the nucleus", "Membranous network around nucleus, covered in ribosomes", "Rigid cellulose layer around the cell"])
+writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

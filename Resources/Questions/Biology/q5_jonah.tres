@@ -6,4 +6,5 @@
 script = ExtResource("1_dni6s")
 question = "What are the four stages of mitosis?"
 options = Array[String](["Prophase, metaphase, anaphase, telophase", "Interphase, metaphase, telophase, anaphase", "G1, S, G2, mitosis"])
+writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

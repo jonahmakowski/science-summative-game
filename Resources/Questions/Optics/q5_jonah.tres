@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://dq0wn0ieqpc03"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_jcmuy"]
+
+[resource]
+script = ExtResource("1_jcmuy")
+question = "What does the ciliary muscle do?"
+options = Array[String](["Change shape of lens for focusing", "Transmit electrical signal from retina to brain", "Convert light to electrical signal", "Opens and closes to adjust the amount of incoming light"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

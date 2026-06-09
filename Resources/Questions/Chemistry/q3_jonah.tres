@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bjk16ipliadmf"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_txpqf"]
+
+[resource]
+script = ExtResource("1_txpqf")
+question = "What is the name of this polyatomic ion: CO₄²⁻"
+options = Array[String](["This polyatomic ion doesn't exist", "Carbonate", "Phosphate", "Hydroxide"])
+writer = "Jonah"
+metadata/_custom_type_script = "uid://dyoponebgj16r"
