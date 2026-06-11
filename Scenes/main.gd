@@ -2,6 +2,7 @@ extends Control
 
 enum state {
 	BUZZER,
+	NO_BUZZER,
 	QUESTION,
 	KICKED,
 	CAN_LEAVE,
@@ -13,18 +14,29 @@ enum player_status {
 	KICKED,
 }
 
+const BUZZER_TIME = 20
+const OPTION_TIME = 5
+
 @export var option_scene: PackedScene
+@export var timer: Timer
 @export_group("Buzzer", "buzzer")
 @export var buzzer: Control
 @export var buzzer_question: Label
+@export var buzzer_timer_label: Label
+@export_group("No Buzzer", "nobuzzer")
+@export var nobuzzer: Control
+@export var nobuzzer_label: Label
+@export var nobuzzer_button: Button
 @export_group("Question", "question")
 @export var question: Control
 @export var question_question: Label
 @export var question_player: Label
 @export var question_writer: Label
 @export var question_option_container: GridContainer
+@export var question_timer_label: Label
 @export_group("Kicked", "kicked")
 @export var kicked: Control
+@export var kicked_label: Label
 @export var kicked_player: Label
 @export var kicked_leave_button: Button
 @export_group("Can Leave", "canleave")
@@ -44,7 +56,11 @@ var current_state = state.BUZZER:
 ## The current player number 1, 2, 3, 4
 var current_player := 0
 var money: Dictionary[int, int] = { 1: 0, 2: 0, 3: 0, 4: 0 }
-var running_players: Dictionary[int, player_status] = { 1: player_status.PLAYING, 2: player_status.PLAYING, 3: player_status.PLAYING, 4: player_status.PLAYING }
+var running_players: Dictionary[int, player_status] = { 1: player_status.PLAYING, 2: player_status.PLAYING, 3: player_status.PLAYING, 4: player_status.PLAYING }:
+	set(new):
+		var old = running_players.duplicate()
+		running_players = new
+		_new_round_checks(old, running_players)
 var current_money := 500
 
 @onready var current_question: Question = _get_new_question()
@@ -55,10 +71,19 @@ func _ready() -> void:
 
 	kicked_leave_button.pressed.connect(_player_kicked_button_pressed)
 
+	nobuzzer_button.pressed.connect(func(): current_state = state.SCORE)
+
 	canleave_leave_button.pressed.connect(_player_left)
 	canleave_stay_button.pressed.connect(func(): current_state = state.SCORE)
 
 	score_continue_button.pressed.connect(func(): current_state = state.BUZZER)
+
+	timer.timeout.connect(_timer_up)
+
+
+func _process(_delta: float) -> void:
+	buzzer_timer_label.text = "%.2f seconds remaining" % timer.time_left
+	question_timer_label.text = "%.2f seconds remaining" % timer.time_left
 
 
 func _input(event: InputEvent) -> void:
@@ -79,6 +104,7 @@ func _input(event: InputEvent) -> void:
 
 func _update_state():
 	buzzer.hide()
+	nobuzzer.hide()
 	question.hide()
 	kicked.hide()
 	canleave.hide()
@@ -87,8 +113,14 @@ func _update_state():
 	match current_state:
 		state.BUZZER:
 			_get_new_question()
+			timer.start(BUZZER_TIME)
 			buzzer.show()
+		state.NO_BUZZER:
+			nobuzzer.show()
+			nobuzzer_label.text = "Everyone loses %d money!" % int(current_money / 2.)
+			_no_buzzer_lose_money()
 		state.QUESTION:
+			timer.start(OPTION_TIME)
 			question.show()
 			question_player.text = "Player %d" % current_player
 		state.KICKED:
@@ -99,8 +131,8 @@ func _update_state():
 			canleave.show()
 			canleave_money.text = "You have %d money!" % money[current_player]
 		state.SCORE:
-			score.show()
 			_do_score()
+			score.show()
 
 
 func _get_new_question():
@@ -160,12 +192,19 @@ func _do_score():
 		score_box.add_child(status_label)
 
 
+func _no_buzzer_lose_money():
+	for player in running_players.keys():
+		if running_players[player] == player_status.PLAYING:
+			money[player] -= int(current_money / 2.)
+
+
 func _handle_correct():
 	money[current_player] += current_money
 	current_state = state.CAN_LEAVE
 
 
 func _handle_incorrect():
+	kicked_label.text = "You have been kicked!"
 	current_state = state.KICKED
 
 
@@ -176,3 +215,39 @@ func _player_kicked_button_pressed():
 func _player_left():
 	running_players[current_player] = player_status.LEFT
 	current_state = state.SCORE
+
+
+func _new_round_checks(old: Dictionary[int, player_status], new: Dictionary[int, player_status]):
+	var changed: Dictionary[int, player_status] = { }
+	var existing_players := 0
+	var living_player := 0
+
+	for player in new.keys():
+		if new[player] != old[player]:
+			changed[player] = new[player]
+
+	for player in new.keys():
+		if new[player] == player_status.PLAYING:
+			existing_players += 1
+			living_player = player
+
+	if existing_players > 1:
+		return
+	elif existing_players <= 0:
+		push_error("Less than one player remaining")
+		return
+
+	print("Game Over!")
+	if changed[changed.keys()[0]] == player_status.LEFT:
+		running_players[living_player] = player_status.KICKED
+	elif changed[changed.keys()[0]] == player_status.KICKED:
+		running_players[living_player] = player_status.LEFT
+	print(running_players)
+
+
+func _timer_up():
+	if current_state == state.QUESTION:
+		kicked_label.text = "You have run out of time!"
+		current_state = state.KICKED
+	elif current_state == state.BUZZER:
+		current_state = state.NO_BUZZER

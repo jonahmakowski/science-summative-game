@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cskr2fj78fnb1" path="res://Scenes/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cigsf2qfyr2pc" path="res://Scenes/option.tscn" id="2_bo1nx"]
 
-[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("buzzer", "buzzer_question", "question", "question_question", "question_player", "question_writer", "question_option_container", "kicked", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button", "score", "score_box", "score_continue_button")]
+[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("timer", "buzzer", "buzzer_question", "buzzer_timer_label", "nobuzzer", "nobuzzer_label", "nobuzzer_button", "question", "question_question", "question_player", "question_writer", "question_option_container", "question_timer_label", "kicked", "kicked_label", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button", "score", "score_box", "score_continue_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,14 +12,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
 option_scene = ExtResource("2_bo1nx")
+timer = NodePath("Timer")
 buzzer = NodePath("Buzzer")
 buzzer_question = NodePath("Buzzer/VBoxContainer/Question")
+buzzer_timer_label = NodePath("Buzzer/VBoxContainer/Timer")
+nobuzzer = NodePath("NoBuzzer")
+nobuzzer_label = NodePath("NoBuzzer/VBoxContainer/Label")
+nobuzzer_button = NodePath("NoBuzzer/VBoxContainer/Button")
 question = NodePath("Question")
 question_question = NodePath("Question/VBoxContainer2/Question")
 question_player = NodePath("Question/VBoxContainer2/Player")
 question_writer = NodePath("Question/VBoxContainer2/Writer")
 question_option_container = NodePath("Question/VBoxContainer2/QuestionContainer")
+question_timer_label = NodePath("Question/VBoxContainer2/Timer")
 kicked = NodePath("Kicked")
+kicked_label = NodePath("Kicked/VBoxContainer2/Label")
 kicked_player = NodePath("Kicked/VBoxContainer2/Player")
 kicked_leave_button = NodePath("Kicked/VBoxContainer2/LeaveButton")
 canleave = NodePath("CanLeave")
@@ -31,7 +38,6 @@ score_box = NodePath("Score/VBoxContainer/GridContainer")
 score_continue_button = NodePath("Score/VBoxContainer/ContinueButton")
 
 [node name="Buzzer" type="Control" parent="." unique_id=587799907]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +54,11 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="Timer" type="Label" parent="Buzzer/VBoxContainer" unique_id=497955948]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Question" type="Label" parent="Buzzer/VBoxContainer" unique_id=998016397]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -62,6 +73,48 @@ Player 2: Press Shift
 Player 3: Press Delete/Backspace
 Player 4: Press Enter"
 horizontal_alignment = 1
+
+[node name="NoBuzzer" type="Control" parent="." unique_id=494830245]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NoBuzzer" unique_id=1961408961]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Spacer" type="Control" parent="NoBuzzer/VBoxContainer" unique_id=1819089338]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="NoBuzzer/VBoxContainer" unique_id=2037110171]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Nobody hit the buzzer!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="NoBuzzer/VBoxContainer" unique_id=723924636]
+layout_mode = 2
+text = "Everyone loses x money!"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="NoBuzzer/VBoxContainer" unique_id=293499836]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="NoBuzzer/VBoxContainer" unique_id=2097635435]
+layout_mode = 2
+text = "Continue"
 
 [node name="Question" type="Control" parent="." unique_id=1370543564]
 visible = false
@@ -80,6 +133,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="Timer" type="Label" parent="Question/VBoxContainer2" unique_id=1760696797]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Question" type="Label" parent="Question/VBoxContainer2" unique_id=1388963023]
 layout_mode = 2
@@ -182,6 +240,7 @@ size_flags_horizontal = 4
 text = "Stay"
 
 [node name="Score" type="Control" parent="." unique_id=992171548]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,3 +271,6 @@ columns = 3
 [node name="ContinueButton" type="Button" parent="Score/VBoxContainer" unique_id=238126669]
 layout_mode = 2
 text = "Continue"
+
+[node name="Timer" type="Timer" parent="." unique_id=895452485]
+one_shot = true
