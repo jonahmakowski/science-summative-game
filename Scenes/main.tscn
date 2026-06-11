@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dqpneav81f0nm"]
 
 [ext_resource type="Script" uid="uid://cskr2fj78fnb1" path="res://Scenes/main.gd" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://cigsf2qfyr2pc" path="res://Scenes/option.tscn" id="2_bo1nx"]
 
-[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("buzzer", "buzzer_question", "question", "question_question", "question_player", "question_writer", "question_option_container", "kicked", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button")]
+[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("buzzer", "buzzer_question", "question", "question_question", "question_player", "question_writer", "question_option_container", "kicked", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button", "score", "score_box", "score_continue_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
+option_scene = ExtResource("2_bo1nx")
 buzzer = NodePath("Buzzer")
 buzzer_question = NodePath("Buzzer/VBoxContainer/Question")
 question = NodePath("Question")
@@ -24,6 +26,9 @@ canleave = NodePath("CanLeave")
 canleave_money = NodePath("CanLeave/VBoxContainer2/Money")
 canleave_leave_button = NodePath("CanLeave/VBoxContainer2/HBoxContainer/LeaveButton")
 canleave_stay_button = NodePath("CanLeave/VBoxContainer2/HBoxContainer/StayButton")
+score = NodePath("Score")
+score_box = NodePath("Score/VBoxContainer/GridContainer")
+score_continue_button = NodePath("Score/VBoxContainer/ContinueButton")
 
 [node name="Buzzer" type="Control" parent="." unique_id=587799907]
 visible = false
@@ -133,6 +138,7 @@ size_flags_horizontal = 4
 text = "Leave"
 
 [node name="CanLeave" type="Control" parent="." unique_id=1759152656]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -174,3 +180,35 @@ text = "Leave"
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Stay"
+
+[node name="Score" type="Control" parent="." unique_id=992171548]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Score" unique_id=195930845]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Score/VBoxContainer" unique_id=2007894163]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Scores"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Score/VBoxContainer" unique_id=1417087035]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="ContinueButton" type="Button" parent="Score/VBoxContainer" unique_id=238126669]
+layout_mode = 2
+text = "Continue"
