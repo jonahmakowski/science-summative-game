@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ssaos")
-question = "Which of the following is Clorate?"
+question = "Which of the following is Chlorate?"
 options = Array[String](["ClO₃-", "Cl₂O₃-", "Cl₃O+", "NH₄+"])
 writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"
