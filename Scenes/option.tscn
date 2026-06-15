@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cigsf2qfyr2pc"]
 
+[ext_resource type="StyleBox" uid="uid://la6x3h7xnjul" path="res://Assets/button.tres" id="1_oxlww"]
+
 [node name="Option" type="Button" unique_id=1800069802]
 anchors_preset = 15
 anchor_right = 1.0
@@ -8,3 +10,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("1_oxlww")
+theme_override_styles/pressed = ExtResource("1_oxlww")
+theme_override_styles/hover = ExtResource("1_oxlww")

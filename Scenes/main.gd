@@ -22,6 +22,7 @@ const OPTION_TIME = 10
 @export var option_scene: PackedScene
 @export var score_box_scene: PackedScene
 @export var timer: Timer
+@export var music: AudioStreamPlayer
 @export_group("Buzzer", "buzzer")
 @export var buzzer: Control
 @export var buzzer_question: Label
@@ -91,6 +92,8 @@ func _ready() -> void:
 	cont_continue_button.pressed.connect(func(): current_state = state.BUZZER)
 
 	timer.timeout.connect(_timer_up)
+
+	music.finished.connect(func(): music.play(0))
 
 
 func _process(_delta: float) -> void:
@@ -174,7 +177,7 @@ func _update_state():
 			_set_running_players(current_player, player_status.KICKED)
 		state.CAN_LEAVE:
 			canleave.show()
-			canleave_money.text = "You have %d money!" % money[current_player]
+			canleave_money.text = "You gain %d money!" % current_money
 		state.CONTINUE:
 			cont.show()
 		state.END_OF_GAME:

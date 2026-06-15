@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_txpqf")
-question = "What is the name of this polyatomic ion: CO₄²⁻"
+question = "What is the name of this polyatomic ion: CO₄²-"
 options = Array[String](["This polyatomic ion doesn't exist", "Carbonate", "Phosphate", "Hydroxide"])
 writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"
