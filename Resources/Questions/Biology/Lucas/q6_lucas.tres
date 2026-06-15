@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_qo4vd")
-question = "Which is not one of the three types of nerves?"
+question = "Which is not one of the three roles of nerves?"
 options = Array[String](["Cognitive", "Sensory", "Voluntary", "Involuntary"])
 writer = "Lucas"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

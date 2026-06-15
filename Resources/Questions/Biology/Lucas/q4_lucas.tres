@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_mw2xi")
-question = "Which of the following is not a treatment for cancer?"
-options = Array[String](["Homeopathy", "Surgery", "Radiation", "Immunotherapy"])
+question = "The melting of sea ice does not impact sea levels very much."
+options = Array[String](["True", "False"])
 writer = "Lucas"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

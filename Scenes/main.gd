@@ -18,6 +18,7 @@ enum player_status {
 const BUZZER_TIME = 20
 const OPTION_TIME = 10
 
+@export var questions: Array[Question]
 @export var option_scene: PackedScene
 @export var score_box_scene: PackedScene
 @export var timer: Timer
@@ -182,7 +183,7 @@ func _update_state():
 
 
 func _get_new_question():
-	current_question = Globals.questions.pick_random()
+	current_question = questions.pick_random()
 	buzzer_question.text = current_question.question
 	question_question.text = current_question.question
 	question_writer.text = "Written by %s" % current_question.writer

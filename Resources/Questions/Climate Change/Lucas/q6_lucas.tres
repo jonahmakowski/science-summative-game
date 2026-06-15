@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ava58")
-question = "What is not a strategy to adapt or mitigate the Urban Heat Island Effect?"
+question = "What is not an effective strategy to adapt or mitigate the Urban Heat Island Effect?"
 options = Array[String](["Increasing air conditioning", "Adding more greenspaces", "Retrofitting heat pumps into homes", "Increasing the albedo of asphalt"])
 writer = "Lucas"
 metadata/_custom_type_script = "uid://dyoponebgj16r"
