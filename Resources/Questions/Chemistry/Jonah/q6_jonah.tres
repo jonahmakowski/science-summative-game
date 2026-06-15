@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_67bv7")
-question = "Name this substance: NClO₃"
+question = "Name this substance: HClO₃"
 options = Array[String](["Chloric Acid", "Hydrocloric Acid", "Hydrogen Carbonate", "I have no clue"])
 writer = "Jonah"
 metadata/_custom_type_script = "uid://dyoponebgj16r"

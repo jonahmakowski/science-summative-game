@@ -7,6 +7,7 @@ enum state {
 	KICKED,
 	CAN_LEAVE,
 	SCORE,
+	END_OF_GAME,
 }
 enum player_status {
 	PLAYING,
@@ -18,6 +19,7 @@ const BUZZER_TIME = 20
 const OPTION_TIME = 5
 
 @export var option_scene: PackedScene
+@export var score_box_scene: PackedScene
 @export var timer: Timer
 @export_group("Buzzer", "buzzer")
 @export var buzzer: Control
@@ -48,7 +50,11 @@ const OPTION_TIME = 5
 @export var score: Control
 @export var score_box: GridContainer
 @export var score_continue_button: Button
+@export_group("End of Game", "endofgame")
+@export var endofgame: Control
+@export var endofgame_vbox: VBoxContainer
 
+var correction_option_num = 0
 var current_state = state.BUZZER:
 	set(val):
 		current_state = val
@@ -101,6 +107,37 @@ func _input(event: InputEvent) -> void:
 			current_player = 4
 			current_state = state.QUESTION
 
+	elif current_state == state.QUESTION:
+		if event.is_action_pressed("option_1"):
+			if correction_option_num == 1:
+				_handle_correct()
+			else:
+				_handle_incorrect()
+		elif event.is_action_pressed("option_2"):
+			if correction_option_num == 2:
+				_handle_correct()
+			else:
+				_handle_incorrect()
+		elif event.is_action_pressed("option_3"):
+			if correction_option_num == 3:
+				_handle_correct()
+			else:
+				_handle_incorrect()
+		elif event.is_action_pressed("option_4"):
+			if correction_option_num == 4:
+				_handle_correct()
+			else:
+				_handle_incorrect()
+
+
+func _set_running_players(key, val):
+	if key > 4 or key < 1:
+		push_error("Invalid key added")
+
+	var old = running_players.duplicate()
+	running_players[key] = val
+	_new_round_checks(old, running_players)
+
 
 func _update_state():
 	buzzer.hide()
@@ -109,6 +146,7 @@ func _update_state():
 	kicked.hide()
 	canleave.hide()
 	score.hide()
+	endofgame.hide()
 
 	match current_state:
 		state.BUZZER:
@@ -126,13 +164,16 @@ func _update_state():
 		state.KICKED:
 			kicked.show()
 			kicked_player.text = "Player %d. You had %d money! Now you've lost it all." % [current_player, money[current_player]]
-			running_players[current_player] = player_status.KICKED
+			_set_running_players(current_player, player_status.KICKED)
 		state.CAN_LEAVE:
 			canleave.show()
 			canleave_money.text = "You have %d money!" % money[current_player]
 		state.SCORE:
 			_do_score()
 			score.show()
+		state.END_OF_GAME:
+			_end_of_game_score()
+			endofgame.show()
 
 
 func _get_new_question():
@@ -163,6 +204,7 @@ func _load_options():
 
 		if current_option == current_question.options[0]:
 			button.pressed.connect(_handle_correct)
+			correction_option_num = i + 1
 		else:
 			button.pressed.connect(_handle_incorrect)
 
@@ -213,7 +255,7 @@ func _player_kicked_button_pressed():
 
 
 func _player_left():
-	running_players[current_player] = player_status.LEFT
+	_set_running_players(current_player, player_status.LEFT)
 	current_state = state.SCORE
 
 
@@ -223,26 +265,23 @@ func _new_round_checks(old: Dictionary[int, player_status], new: Dictionary[int,
 	var living_player := 0
 
 	for player in new.keys():
-		if new[player] != old[player]:
-			changed[player] = new[player]
-
-	for player in new.keys():
 		if new[player] == player_status.PLAYING:
 			existing_players += 1
 			living_player = player
 
 	if existing_players > 1:
 		return
-	elif existing_players <= 0:
-		push_error("Less than one player remaining")
-		return
 
-	print("Game Over!")
+	for player in new.keys():
+		if new[player] != old[player]:
+			changed[player] = new[player]
+
 	if changed[changed.keys()[0]] == player_status.LEFT:
 		running_players[living_player] = player_status.KICKED
 	elif changed[changed.keys()[0]] == player_status.KICKED:
 		running_players[living_player] = player_status.LEFT
-	print(running_players)
+
+	current_state = state.END_OF_GAME
 
 
 func _timer_up():
@@ -251,3 +290,54 @@ func _timer_up():
 		current_state = state.KICKED
 	elif current_state == state.BUZZER:
 		current_state = state.NO_BUZZER
+
+
+func _end_of_game_score():
+	var order: Array[int] = []
+
+	var players := running_players.duplicate()
+
+	while true:
+		var highest_player: int = -1
+
+		for player in players.keys():
+			if running_players[player] == player_status.PLAYING or running_players[player] == player_status.LEFT:
+				if highest_player != -1 and money[highest_player] > money[player]:
+					highest_player = player
+
+		if highest_player == -1:
+			break
+
+		players.erase(highest_player)
+
+		order.append(highest_player)
+
+	while true:
+		var highest_player := -1
+
+		for player in players:
+			if money[player] > money[player]:
+				highest_player = player
+
+		if highest_player == -1:
+			break
+
+		players.erase(highest_player)
+
+		order.append(highest_player)
+
+	for player in order:
+		var instance = score_box_scene.instantiate()
+
+		instance.player_text = "Player %d" % player
+		instance.money_text = "$%d" % money[player]
+
+		match running_players[player]:
+			player_status.PLAYING:
+				instance.player_status_text = "Playing"
+			player_status.LEFT:
+				instance.player_status_text = "Left"
+			player_status.KICKED:
+				instance.player_status_text = "Kicked"
+
+		endofgame_vbox.add_child(instance)

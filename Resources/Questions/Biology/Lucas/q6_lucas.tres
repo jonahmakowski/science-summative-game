@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bcw1w1ivflsl1"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_qo4vd"]
+
+[resource]
+script = ExtResource("1_qo4vd")
+question = "Which is not one of the three types of nerves?"
+options = Array[String](["Cognitive", "Sensory", "Voluntary", "Involuntary"])
+writer = "Lucas"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

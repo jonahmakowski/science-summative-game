@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://ci4kpimcp3cb1"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_n5yar"]
+
+[resource]
+script = ExtResource("1_n5yar")
+question = "How many valence electrons do halogens have?"
+options = Array[String](["7", "1", "9", "2"])
+writer = "Lucas"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

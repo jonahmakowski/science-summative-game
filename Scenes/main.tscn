@@ -2,8 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cskr2fj78fnb1" path="res://Scenes/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cigsf2qfyr2pc" path="res://Scenes/option.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://cbx27dswahttw" path="res://Scenes/score_box.tscn" id="3_8gbba"]
+[ext_resource type="Shader" uid="uid://db7qhmxk17rq3" path="res://Scenes/background.gdshader" id="4_kry3j"]
+[ext_resource type="Texture2D" uid="uid://dxd2b48753vjv" path="res://Assets/TriviaBG.png" id="5_21xkr"]
 
-[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("timer", "buzzer", "buzzer_question", "buzzer_timer_label", "nobuzzer", "nobuzzer_label", "nobuzzer_button", "question", "question_question", "question_player", "question_writer", "question_option_container", "question_timer_label", "kicked", "kicked_label", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button", "score", "score_box", "score_continue_button")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6bp64"]
+shader = ExtResource("4_kry3j")
+
+[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("timer", "buzzer", "buzzer_question", "buzzer_timer_label", "nobuzzer", "nobuzzer_label", "nobuzzer_button", "question", "question_question", "question_player", "question_writer", "question_option_container", "question_timer_label", "kicked", "kicked_label", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button", "score", "score_box", "score_continue_button", "endofgame", "endofgame_vbox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
 option_scene = ExtResource("2_bo1nx")
+score_box_scene = ExtResource("3_8gbba")
 timer = NodePath("Timer")
 buzzer = NodePath("Buzzer")
 buzzer_question = NodePath("Buzzer/VBoxContainer/Question")
@@ -36,8 +43,22 @@ canleave_stay_button = NodePath("CanLeave/VBoxContainer2/HBoxContainer/StayButto
 score = NodePath("Score")
 score_box = NodePath("Score/VBoxContainer/GridContainer")
 score_continue_button = NodePath("Score/VBoxContainer/ContinueButton")
+endofgame = NodePath("EndOfGame")
+endofgame_vbox = NodePath("EndOfGame/VBoxContainer/VBoxContainer")
+
+[node name="Background" type="TextureRect" parent="." unique_id=9563311]
+material = SubResource("ShaderMaterial_6bp64")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_21xkr")
+stretch_mode = 1
 
 [node name="Buzzer" type="Control" parent="." unique_id=587799907]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,6 +292,35 @@ columns = 3
 [node name="ContinueButton" type="Button" parent="Score/VBoxContainer" unique_id=238126669]
 layout_mode = 2
 text = "Continue"
+
+[node name="EndOfGame" type="Control" parent="." unique_id=1603113958]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndOfGame" unique_id=1223625043]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="EndOfGame/VBoxContainer" unique_id=267375292]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndOfGame/VBoxContainer" unique_id=844105662]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
 
 [node name="Timer" type="Timer" parent="." unique_id=895452485]
 one_shot = true

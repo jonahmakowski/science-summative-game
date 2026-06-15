@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bkl3pc42atw2u"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_l300i"]
+
+[resource]
+script = ExtResource("1_l300i")
+question = "Which of the following does not have a low albedo?"
+options = Array[String](["Desert sand", "Forests", "Open ocean", "Asphalt"])
+writer = "Lucas"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://55kxgbosprf3"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_q62yl"]
+
+[resource]
+script = ExtResource("1_q62yl")
+question = "A neutralisation reaction produces what?"
+options = Array[String](["Salt + H2O", "Heat + Product", "Product", "2 Products"])
+writer = "Aaron"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

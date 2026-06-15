@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://dhjwf1ormv1k7"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_mw2xi"]
+
+[resource]
+script = ExtResource("1_mw2xi")
+question = "Which of the following is not a treatment for cancer?"
+options = Array[String](["Homeopathy", "Surgery", "Radiation", "Immunotherapy"])
+writer = "Lucas"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://c57htytcnqs7y"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_o073f"]
+
+[resource]
+script = ExtResource("1_o073f")
+question = "Which colour of visible light has the shortest wavelength?"
+options = Array[String](["Violet", "Red", "Purple", "White"])
+writer = "Lucas"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

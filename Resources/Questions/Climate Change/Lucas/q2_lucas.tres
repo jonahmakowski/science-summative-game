@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://bpfoix2taiasp"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_bnvfb"]
+
+[resource]
+script = ExtResource("1_bnvfb")
+question = "Glaciers melting causing the Earth’s albedo to decrease is an example of a negative feedback loop."
+options = Array[String](["False", "True"])
+writer = "Lucas"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

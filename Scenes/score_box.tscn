@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cbx27dswahttw"]
+
+[sub_resource type="GDScript" id="GDScript_rniwk"]
+script/source = "extends HBoxContainer
+
+@onready var player: Label = %Player
+@onready var money: Label = %Money
+@onready var player_status: Label = %PlayerStatus
+
+@export var player_text: String:
+	set(val):
+		player_text = val
+		player.text = player_text
+@export var money_text: String:
+	set(val):
+		money_text = val
+		money.text = money_text
+@export var player_status_text: String:
+	set(val):
+		player_status_text = val
+		player_status.text = player_status_text
+"
+
+[node name="ScoreBox" type="HBoxContainer" unique_id=751524683]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = SubResource("GDScript_rniwk")
+
+[node name="Spacer" type="Control" parent="." unique_id=292680329]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player" type="Label" parent="." unique_id=315230924]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player 1"
+
+[node name="Spacer2" type="Control" parent="." unique_id=239809436]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Money" type="Label" parent="." unique_id=1859017135]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$X"
+
+[node name="Spacer3" type="Control" parent="." unique_id=724998998]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerStatus" type="Label" parent="." unique_id=1219650840]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Playing"
+
+[node name="Spacer4" type="Control" parent="." unique_id=44200361]
+layout_mode = 2
+size_flags_horizontal = 3

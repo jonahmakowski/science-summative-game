@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3 uid="uid://d18xn3fwcm5s2"]
+
+[ext_resource type="Script" uid="uid://dyoponebgj16r" path="res://Resources/Definitions/question.gd" id="1_voidq"]
+
+[resource]
+script = ExtResource("1_voidq")
+question = "When light travels from a faster medium to a slower medium, it bends towards the normal."
+options = Array[String](["True", "False"])
+writer = "Lucas"
+metadata/_custom_type_script = "uid://dyoponebgj16r"

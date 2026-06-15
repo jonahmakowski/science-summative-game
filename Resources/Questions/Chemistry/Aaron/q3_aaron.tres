@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Question" format=3]
+
+[ext_resource type="Script" path="res://Resources/Definitions/question.gd" id="1_q62yl"]
+
+[resource]
+script = ExtResource("1_q62yl")
+question = "Which pH is acidic?"
+options = Array[String](["pH = 5", "pH = 7", "pH = 10", "pH = 8"])
+writer = "Aaron"
+metadata/_custom_type_script = "uid://dyoponebgj16r"
