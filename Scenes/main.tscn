@@ -11,11 +11,25 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6bp64"]
 shader = ExtResource("4_kry3j")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bp64"]
 atlas = ExtResource("7_344ge")
 region = Rect2(0, 0, 192, 128)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bp64"]
+texture = SubResource("AtlasTexture_6bp64")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_344ge"]
+load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b6fd8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
+atlas = SubResource("CompressedTexture2D_344ge")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_344ge"]
 texture = SubResource("AtlasTexture_ynf5e")
 texture_margin_left = 11.0
 texture_margin_top = 11.0
@@ -27,38 +41,24 @@ load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1ilt"]
 atlas = SubResource("CompressedTexture2D_hptm8")
-region = Rect2(192, 0, 192, 128)
+region = Rect2(384, 0, 192, 128)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdnlq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynf5e"]
 texture = SubResource("AtlasTexture_d1ilt")
 texture_margin_left = 11.0
 texture_margin_top = 11.0
 texture_margin_right = 11.0
 texture_margin_bottom = 11.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6bp64"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6iyac"]
 load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b6fd8.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_344ge"]
-atlas = SubResource("CompressedTexture2D_6bp64")
-region = Rect2(384, 0, 192, 128)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k12tt"]
-texture = SubResource("AtlasTexture_344ge")
-texture_margin_left = 11.0
-texture_margin_top = 11.0
-texture_margin_right = 11.0
-texture_margin_bottom = 11.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ynf5e"]
-load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b6fd8.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hptm8"]
-atlas = SubResource("CompressedTexture2D_ynf5e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
+atlas = SubResource("CompressedTexture2D_6iyac")
 region = Rect2(576, 0, 192, 128)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fevyy"]
-texture = SubResource("AtlasTexture_hptm8")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hptm8"]
+texture = SubResource("AtlasTexture_fdnlq")
 texture_margin_left = 11.0
 texture_margin_top = 11.0
 texture_margin_right = 11.0
@@ -145,9 +145,9 @@ size_flags_stretch_ratio = 0.25
 
 [node name="Player1" parent="Scores/VBoxContainer/HBoxContainer" unique_id=861958834 instance=ExtResource("6_6bp64")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_6bp64")
-texture = SubResource("AtlasTexture_ynf5e")
+texture = SubResource("AtlasTexture_6bp64")
 style_box = SubResource("StyleBoxTexture_6bp64")
+current_turn = false
 
 [node name="Spacer2" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=1334447837]
 layout_mode = 2
@@ -156,9 +156,9 @@ size_flags_stretch_ratio = 0.25
 
 [node name="Player2" parent="Scores/VBoxContainer/HBoxContainer" unique_id=385478989 instance=ExtResource("6_6bp64")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_fdnlq")
-texture = SubResource("AtlasTexture_d1ilt")
-style_box = SubResource("StyleBoxTexture_fdnlq")
+texture = SubResource("AtlasTexture_ynf5e")
+style_box = SubResource("StyleBoxTexture_344ge")
+current_turn = false
 
 [node name="Spacer3" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=200820633]
 layout_mode = 2
@@ -167,9 +167,9 @@ size_flags_stretch_ratio = 0.25
 
 [node name="Player3" parent="Scores/VBoxContainer/HBoxContainer" unique_id=462996436 instance=ExtResource("6_6bp64")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_k12tt")
-texture = SubResource("AtlasTexture_344ge")
-style_box = SubResource("StyleBoxTexture_k12tt")
+texture = SubResource("AtlasTexture_d1ilt")
+style_box = SubResource("StyleBoxTexture_ynf5e")
+current_turn = false
 
 [node name="Spacer4" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=884484376]
 layout_mode = 2
@@ -178,9 +178,9 @@ size_flags_stretch_ratio = 0.25
 
 [node name="Player4" parent="Scores/VBoxContainer/HBoxContainer" unique_id=1530025476 instance=ExtResource("6_6bp64")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_fevyy")
-texture = SubResource("AtlasTexture_hptm8")
-style_box = SubResource("StyleBoxTexture_fevyy")
+texture = SubResource("AtlasTexture_fdnlq")
+style_box = SubResource("StyleBoxTexture_hptm8")
+current_turn = false
 
 [node name="Spacer5" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=265479479]
 layout_mode = 2
@@ -256,13 +256,14 @@ layout_mode = 2
 text = "Everyone loses x money!"
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="NoBuzzer/VBoxContainer" unique_id=2097635435]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Continue"
+
 [node name="Spacer2" type="Control" parent="NoBuzzer/VBoxContainer" unique_id=293499836]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="NoBuzzer/VBoxContainer" unique_id=2097635435]
-layout_mode = 2
-text = "Continue"
 
 [node name="Question" type="Control" parent="." unique_id=1370543564]
 visible = false

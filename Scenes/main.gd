@@ -16,7 +16,7 @@ enum player_status {
 }
 
 const BUZZER_TIME = 20
-const OPTION_TIME = 5
+const OPTION_TIME = 10
 
 @export var option_scene: PackedScene
 @export var score_box_scene: PackedScene
@@ -282,7 +282,7 @@ func _end_of_game_score():
 
 		for player in players.keys():
 			if running_players[player] == player_status.PLAYING or running_players[player] == player_status.LEFT:
-				if highest_player == -1 or money[highest_player] > money[player]:
+				if highest_player == -1 or money[highest_player] < money[player]:
 					highest_player = player
 
 		if highest_player == -1:
@@ -296,7 +296,7 @@ func _end_of_game_score():
 		var highest_player := -1
 
 		for player in players:
-			if highest_player == -1 or money[player] > money[player]:
+			if highest_player == -1 or money[highest_player] < money[player]:
 				highest_player = player
 
 		if highest_player == -1:
@@ -342,3 +342,5 @@ func _do_score():
 			player_status.KICKED:
 				scene.left = false
 				scene.kicked = true
+
+		scene.current_turn = current_player == i
