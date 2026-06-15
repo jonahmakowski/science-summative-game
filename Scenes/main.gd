@@ -6,7 +6,7 @@ enum state {
 	QUESTION,
 	KICKED,
 	CAN_LEAVE,
-	SCORE,
+	CONTINUE,
 	END_OF_GAME,
 }
 enum player_status {
@@ -46,18 +46,23 @@ const OPTION_TIME = 5
 @export var canleave_money: Label
 @export var canleave_leave_button: Button
 @export var canleave_stay_button: Button
-@export_group("Score", "score")
-@export var score: Control
-@export var score_box: GridContainer
-@export var score_continue_button: Button
+@export_group("Continue", "cont")
+@export var cont: Control
+@export var cont_continue_button: Button
 @export_group("End of Game", "endofgame")
 @export var endofgame: Control
 @export var endofgame_vbox: VBoxContainer
+@export_group("Scores", "scores")
+@export var scores_p1: PlayerScore
+@export var scores_p2: PlayerScore
+@export var scores_p3: PlayerScore
+@export var scores_p4: PlayerScore
 
 var correction_option_num = 0
 var current_state = state.BUZZER:
 	set(val):
-		current_state = val
+		if current_state != state.END_OF_GAME:
+			current_state = val
 		_update_state()
 ## The current player number 1, 2, 3, 4
 var current_player := 0
@@ -77,12 +82,12 @@ func _ready() -> void:
 
 	kicked_leave_button.pressed.connect(_player_kicked_button_pressed)
 
-	nobuzzer_button.pressed.connect(func(): current_state = state.SCORE)
+	nobuzzer_button.pressed.connect(func(): current_state = state.CONTINUE)
 
 	canleave_leave_button.pressed.connect(_player_left)
-	canleave_stay_button.pressed.connect(func(): current_state = state.SCORE)
+	canleave_stay_button.pressed.connect(func(): current_state = state.CONTINUE)
 
-	score_continue_button.pressed.connect(func(): current_state = state.BUZZER)
+	cont_continue_button.pressed.connect(func(): current_state = state.BUZZER)
 
 	timer.timeout.connect(_timer_up)
 
@@ -90,6 +95,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	buzzer_timer_label.text = "%.2f seconds remaining" % timer.time_left
 	question_timer_label.text = "%.2f seconds remaining" % timer.time_left
+	_do_score()
 
 
 func _input(event: InputEvent) -> void:
@@ -145,7 +151,7 @@ func _update_state():
 	question.hide()
 	kicked.hide()
 	canleave.hide()
-	score.hide()
+	cont.hide()
 	endofgame.hide()
 
 	match current_state:
@@ -168,9 +174,8 @@ func _update_state():
 		state.CAN_LEAVE:
 			canleave.show()
 			canleave_money.text = "You have %d money!" % money[current_player]
-		state.SCORE:
-			_do_score()
-			score.show()
+		state.CONTINUE:
+			cont.show()
 		state.END_OF_GAME:
 			_end_of_game_score()
 			endofgame.show()
@@ -209,31 +214,6 @@ func _load_options():
 			button.pressed.connect(_handle_incorrect)
 
 
-func _do_score():
-	for child in score_box.get_children():
-		child.queue_free()
-
-	for i in range(1, 5):
-		var player_label := Label.new()
-		var money_label := Label.new()
-		var status_label := Label.new()
-
-		player_label.text = "Player %d" % i
-		money_label.text = "Money: %d" % money[i]
-
-		match running_players[i]:
-			player_status.PLAYING:
-				status_label.text = "Playing"
-			player_status.LEFT:
-				status_label.text = "Left (Money counts!)"
-			player_status.KICKED:
-				status_label.text = "Kicked (Money doesn't count!)"
-
-		score_box.add_child(player_label)
-		score_box.add_child(money_label)
-		score_box.add_child(status_label)
-
-
 func _no_buzzer_lose_money():
 	for player in running_players.keys():
 		if running_players[player] == player_status.PLAYING:
@@ -251,12 +231,12 @@ func _handle_incorrect():
 
 
 func _player_kicked_button_pressed():
-	current_state = state.SCORE
+	current_state = state.CONTINUE
 
 
 func _player_left():
 	_set_running_players(current_player, player_status.LEFT)
-	current_state = state.SCORE
+	current_state = state.CONTINUE
 
 
 func _new_round_checks(old: Dictionary[int, player_status], new: Dictionary[int, player_status]):
@@ -302,7 +282,7 @@ func _end_of_game_score():
 
 		for player in players.keys():
 			if running_players[player] == player_status.PLAYING or running_players[player] == player_status.LEFT:
-				if highest_player != -1 and money[highest_player] > money[player]:
+				if highest_player == -1 or money[highest_player] > money[player]:
 					highest_player = player
 
 		if highest_player == -1:
@@ -316,7 +296,7 @@ func _end_of_game_score():
 		var highest_player := -1
 
 		for player in players:
-			if money[player] > money[player]:
+			if highest_player == -1 or money[player] > money[player]:
 				highest_player = player
 
 		if highest_player == -1:
@@ -325,6 +305,8 @@ func _end_of_game_score():
 		players.erase(highest_player)
 
 		order.append(highest_player)
+
+	print(order)
 
 	for player in order:
 		var instance = score_box_scene.instantiate()
@@ -341,3 +323,22 @@ func _end_of_game_score():
 				instance.player_status_text = "Kicked"
 
 		endofgame_vbox.add_child(instance)
+
+
+func _do_score():
+	for i in range(1, 5):
+		var scene: PlayerScore = get("scores_p%d" % i)
+
+		scene.player_text = "Player %d" % i
+		scene.molah_text = "Money: %d" % money[i]
+
+		match running_players[i]:
+			player_status.PLAYING:
+				scene.left = false
+				scene.kicked = false
+			player_status.LEFT:
+				scene.left = true
+				scene.kicked = false
+			player_status.KICKED:
+				scene.left = false
+				scene.kicked = true

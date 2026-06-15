@@ -1,0 +1,62 @@
+@tool
+class_name PlayerScore
+extends PanelContainer
+
+@export var texture: AtlasTexture
+@export var style_box: StyleBox
+@export var left_asset: AtlasTexture
+@export var kicked_asset: AtlasTexture
+@export var player_text: String:
+	set(val):
+		player_text = val
+		if is_node_ready():
+			_setup()
+@export var molah_text: String:
+	set(val):
+		molah_text = val
+		if is_node_ready():
+			_setup()
+@export var left: bool = false:
+	set(val):
+		left = val
+		if is_node_ready():
+			_setup()
+@export var kicked: bool = false:
+	set(val):
+		kicked = val
+		if is_node_ready():
+			_setup()
+
+@onready var player: Label = %Player
+@onready var molah: Label = %Molah
+@onready var button: Label = %Button
+@onready var texture_rect: TextureRect = %TextureRect
+
+
+func _ready():
+	style_box.texture = texture
+	add_theme_stylebox_override("panel", style_box)
+	_setup()
+
+
+func _setup():
+	player.text = player_text
+	molah.text = molah_text
+
+	if kicked:
+		texture_rect.texture = kicked_asset
+	elif left:
+		texture_rect.texture = left_asset
+
+	if player_text != "":
+		match player_text:
+			"Player 1":
+				button.text = "Escape"
+			"Player 2":
+				button.text = "Shift"
+			"Player 3":
+				button.text = "Delete"
+			"Player 4":
+				button.text = "Enter"
+			_:
+				push_error("Invalid player: \"%s\"" % player_text)

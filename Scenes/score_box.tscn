@@ -10,15 +10,23 @@ script/source = "extends HBoxContainer
 @export var player_text: String:
 	set(val):
 		player_text = val
-		player.text = player_text
+		if is_node_ready():
+			player.text = player_text
 @export var money_text: String:
 	set(val):
 		money_text = val
-		money.text = money_text
+		if is_node_ready():
+			money.text = money_text
 @export var player_status_text: String:
 	set(val):
 		player_status_text = val
-		player_status.text = player_status_text
+		if is_node_ready():
+			player_status.text = player_status_text
+
+func _ready() -> void:
+	player.text = player_text
+	money.text = money_text
+	player_status.text = player_status_text
 "
 
 [node name="ScoreBox" type="HBoxContainer" unique_id=751524683]
@@ -32,33 +40,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 script = SubResource("GDScript_rniwk")
 
-[node name="Spacer" type="Control" parent="." unique_id=292680329]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="Player" type="Label" parent="." unique_id=315230924]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Player 1"
-
-[node name="Spacer2" type="Control" parent="." unique_id=239809436]
-layout_mode = 2
 size_flags_horizontal = 3
+text = "Player 1"
+horizontal_alignment = 1
 
 [node name="Money" type="Label" parent="." unique_id=1859017135]
 unique_name_in_owner = true
 layout_mode = 2
-text = "$X"
-
-[node name="Spacer3" type="Control" parent="." unique_id=724998998]
-layout_mode = 2
 size_flags_horizontal = 3
+text = "$X"
+horizontal_alignment = 1
 
 [node name="PlayerStatus" type="Label" parent="." unique_id=1219650840]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Playing"
-
-[node name="Spacer4" type="Control" parent="." unique_id=44200361]
-layout_mode = 2
 size_flags_horizontal = 3
+text = "Playing"
+horizontal_alignment = 1

@@ -5,11 +5,66 @@
 [ext_resource type="PackedScene" uid="uid://cbx27dswahttw" path="res://Scenes/score_box.tscn" id="3_8gbba"]
 [ext_resource type="Shader" uid="uid://db7qhmxk17rq3" path="res://Scenes/background.gdshader" id="4_kry3j"]
 [ext_resource type="Texture2D" uid="uid://dxd2b48753vjv" path="res://Assets/TriviaBG.png" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://b5huha8x8b4mo" path="res://Scenes/player_score.tscn" id="6_6bp64"]
+[ext_resource type="Texture2D" uid="uid://bynwpy8rgyiom" path="res://Assets/TriviaAssets.png" id="7_344ge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6bp64"]
 shader = ExtResource("4_kry3j")
 
-[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("timer", "buzzer", "buzzer_question", "buzzer_timer_label", "nobuzzer", "nobuzzer_label", "nobuzzer_button", "question", "question_question", "question_player", "question_writer", "question_option_container", "question_timer_label", "kicked", "kicked_label", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button", "score", "score_box", "score_continue_button", "endofgame", "endofgame_vbox")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
+atlas = ExtResource("7_344ge")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bp64"]
+texture = SubResource("AtlasTexture_ynf5e")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hptm8"]
+load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b6fd8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1ilt"]
+atlas = SubResource("CompressedTexture2D_hptm8")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdnlq"]
+texture = SubResource("AtlasTexture_d1ilt")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6bp64"]
+load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b6fd8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_344ge"]
+atlas = SubResource("CompressedTexture2D_6bp64")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k12tt"]
+texture = SubResource("AtlasTexture_344ge")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ynf5e"]
+load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b6fd8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hptm8"]
+atlas = SubResource("CompressedTexture2D_ynf5e")
+region = Rect2(576, 0, 192, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fevyy"]
+texture = SubResource("AtlasTexture_hptm8")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+
+[node name="Main" type="Control" unique_id=1974071415 node_paths=PackedStringArray("timer", "buzzer", "buzzer_question", "buzzer_timer_label", "nobuzzer", "nobuzzer_label", "nobuzzer_button", "question", "question_question", "question_player", "question_writer", "question_option_container", "question_timer_label", "kicked", "kicked_label", "kicked_player", "kicked_leave_button", "canleave", "canleave_money", "canleave_leave_button", "canleave_stay_button", "cont", "cont_continue_button", "endofgame", "endofgame_vbox", "scores_p1", "scores_p2", "scores_p3", "scores_p4")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,11 +95,14 @@ canleave = NodePath("CanLeave")
 canleave_money = NodePath("CanLeave/VBoxContainer2/Money")
 canleave_leave_button = NodePath("CanLeave/VBoxContainer2/HBoxContainer/LeaveButton")
 canleave_stay_button = NodePath("CanLeave/VBoxContainer2/HBoxContainer/StayButton")
-score = NodePath("Score")
-score_box = NodePath("Score/VBoxContainer/GridContainer")
-score_continue_button = NodePath("Score/VBoxContainer/ContinueButton")
+cont = NodePath("Continue")
+cont_continue_button = NodePath("Continue/VBoxContainer/ContinueButton")
 endofgame = NodePath("EndOfGame")
 endofgame_vbox = NodePath("EndOfGame/VBoxContainer/VBoxContainer")
+scores_p1 = NodePath("Scores/VBoxContainer/HBoxContainer/Player1")
+scores_p2 = NodePath("Scores/VBoxContainer/HBoxContainer/Player2")
+scores_p3 = NodePath("Scores/VBoxContainer/HBoxContainer/Player3")
+scores_p4 = NodePath("Scores/VBoxContainer/HBoxContainer/Player4")
 
 [node name="Background" type="TextureRect" parent="." unique_id=9563311]
 material = SubResource("ShaderMaterial_6bp64")
@@ -56,6 +114,83 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_21xkr")
 stretch_mode = 1
+
+[node name="Scores" type="Control" parent="." unique_id=271409915]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scores" unique_id=903771270]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacer" type="Control" parent="Scores/VBoxContainer" unique_id=1127659040]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scores/VBoxContainer" unique_id=1223381452]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=470069744]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Player1" parent="Scores/VBoxContainer/HBoxContainer" unique_id=861958834 instance=ExtResource("6_6bp64")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6bp64")
+texture = SubResource("AtlasTexture_ynf5e")
+style_box = SubResource("StyleBoxTexture_6bp64")
+
+[node name="Spacer2" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=1334447837]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Player2" parent="Scores/VBoxContainer/HBoxContainer" unique_id=385478989 instance=ExtResource("6_6bp64")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fdnlq")
+texture = SubResource("AtlasTexture_d1ilt")
+style_box = SubResource("StyleBoxTexture_fdnlq")
+
+[node name="Spacer3" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=200820633]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Player3" parent="Scores/VBoxContainer/HBoxContainer" unique_id=462996436 instance=ExtResource("6_6bp64")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_k12tt")
+texture = SubResource("AtlasTexture_344ge")
+style_box = SubResource("StyleBoxTexture_k12tt")
+
+[node name="Spacer4" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=884484376]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Player4" parent="Scores/VBoxContainer/HBoxContainer" unique_id=1530025476 instance=ExtResource("6_6bp64")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fevyy")
+texture = SubResource("AtlasTexture_hptm8")
+style_box = SubResource("StyleBoxTexture_fevyy")
+
+[node name="Spacer5" type="Control" parent="Scores/VBoxContainer/HBoxContainer" unique_id=265479479]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Spacer2" type="Control" parent="Scores/VBoxContainer" unique_id=72764237]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.02
 
 [node name="Buzzer" type="Control" parent="." unique_id=587799907]
 visible = false
@@ -86,14 +221,6 @@ theme_override_font_sizes/font_size = 32
 text = "This is where the question goes!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Label" type="Label" parent="Buzzer/VBoxContainer" unique_id=1010570816]
-layout_mode = 2
-text = "Player 1: Press Escape
-Player 2: Press Shift
-Player 3: Press Delete/Backspace
-Player 4: Press Enter"
-horizontal_alignment = 1
 
 [node name="NoBuzzer" type="Control" parent="." unique_id=494830245]
 visible = false
@@ -166,6 +293,7 @@ theme_override_font_sizes/font_size = 32
 text = "This is where the question goes!"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Player" type="Label" parent="Question/VBoxContainer2" unique_id=1907465291]
 layout_mode = 2
@@ -260,7 +388,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Stay"
 
-[node name="Score" type="Control" parent="." unique_id=992171548]
+[node name="Continue" type="Control" parent="." unique_id=992171548]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -269,28 +397,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Score" unique_id=195930845]
+[node name="VBoxContainer" type="VBoxContainer" parent="Continue" unique_id=195930845]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="Score/VBoxContainer" unique_id=2007894163]
+[node name="Label" type="Label" parent="Continue/VBoxContainer" unique_id=2007894163]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Scores"
+text = "Ready for the next question?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Score/VBoxContainer" unique_id=1417087035]
+[node name="ContinueButton" type="Button" parent="Continue/VBoxContainer" unique_id=238126669]
 layout_mode = 2
-size_flags_vertical = 3
-columns = 3
-
-[node name="ContinueButton" type="Button" parent="Score/VBoxContainer" unique_id=238126669]
-layout_mode = 2
+size_flags_horizontal = 4
 text = "Continue"
 
 [node name="EndOfGame" type="Control" parent="." unique_id=1603113958]
