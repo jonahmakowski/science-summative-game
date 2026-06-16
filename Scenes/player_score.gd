@@ -60,10 +60,10 @@ func _setup():
 		"Player 1":
 			button.text = "Escape"
 		"Player 2":
-			button.text = "Shift"
+			button.text = "Z"
 		"Player 3":
 			button.text = "Delete"
 		"Player 4":
-			button.text = "Enter"
+			button.text = "Slash (/)"
 		_:
 			button.text = ""

@@ -3,15 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bynwpy8rgyiom" path="res://Assets/TriviaAssets.png" id="1_6k3gh"]
 [ext_resource type="Script" uid="uid://d01ypoq7ldu63" path="res://Scenes/player_score.gd" id="2_loa7j"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6iyac"]
-load_path = "res://.godot/imported/TriviaAssets.png-9b7752fc76a20b47628cc62ffd1b6fd8.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
-atlas = SubResource("CompressedTexture2D_6iyac")
-region = Rect2(576, 0, 192, 128)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_siure"]
-texture = SubResource("AtlasTexture_fdnlq")
 texture_margin_left = 11.0
 texture_margin_top = 11.0
 texture_margin_right = 11.0
@@ -24,17 +16,6 @@ region = Rect2(192, 384, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0vlj"]
 atlas = ExtResource("1_6k3gh")
 region = Rect2(256, 384, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_loa7j"]
-atlas = ExtResource("1_6k3gh")
-region = Rect2(0, 0, 192, 128)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_loa7j"]
-texture = SubResource("AtlasTexture_loa7j")
-texture_margin_left = 11.0
-texture_margin_top = 11.0
-texture_margin_right = 11.0
-texture_margin_bottom = 11.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_siure"]
 atlas = ExtResource("1_6k3gh")
@@ -51,14 +32,13 @@ script = ExtResource("2_loa7j")
 style_box = SubResource("StyleBoxTexture_siure")
 left_asset = SubResource("AtlasTexture_dq2fi")
 kicked_asset = SubResource("AtlasTexture_m0vlj")
-current_turn = null
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=861958834]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_loa7j")
+theme_override_styles/panel = SubResource("StyleBoxTexture_siure")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=467434233]
 layout_mode = 2
@@ -90,5 +70,6 @@ horizontal_alignment = 1
 
 [node name="TurnBar" type="TextureRect" parent="." unique_id=80927333]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 texture = SubResource("AtlasTexture_siure")
