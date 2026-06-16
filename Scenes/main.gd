@@ -312,6 +312,9 @@ func _end_of_game_score():
 
 	print(order)
 
+	for child in endofgame_vbox.get_children():
+		child.queue_free()
+
 	for player in order:
 		var instance = score_box_scene.instantiate()
 
